@@ -19,29 +19,41 @@ public static void main(String[] args) throws Exception {
 
     public static int countKeywords(File file) throws Exception {
       // Array of all Java keywords + true, false and null
-      String[] keywordString = {"abstract", "assert", "boolean",
-          "break", "byte", "case", "catch", "char", "class", "const",
-          "continue", "default", "do", "double", "else", "enum",
-          "extends", "for", "final", "finally", "float", "goto",
-          "if", "implements", "import", "instanceof", "int",
-          "interface", "long", "native", "new", "package", "private",
-          "protected", "public", "return", "short", "static",
-          "strictfp", "super", "switch", "synchronized", "this",
-          "throw", "throws", "transient", "try", "void", "volatile",
-          "while", "true", "false", "null"};
+      String[] keywordString = {"abstract", "assert", "boolean", 
+        "break", "byte", "case", "catch", "char", "class", "const",
+        "continue", "default", "do", "double", "else", "enum",
+        "extends", "for", "final", "finally", "float", "goto",
+        "if", "implements", "import", "instanceof", "int",
+        "interface", "long", "native", "new", "package", "private",
+        "protected", "public", "return", "short", "static",
+        "strictfp", "super", "switch", "synchronized", "this",
+        "throw", "throws", "transient", "try", "void", "volatile",
+        "while", "true", "false", "null"};
 
-      Set<String> keywordSet =
-        new HashSet<>(Arrays.asList(keywordString));
+      Set<String> keywordSet = new HashSet<>(Arrays.asList(keywordString));
       int count = 0;
 
       Scanner input = new Scanner(file);
-
+      
+      Boolean comment = false;
       while (input.hasNext()) {
-        String word = input.next();
-        if (keywordSet.contains(word))
-          count++;
+        String line = input.nextLine();
+        String[] words = line.split(" ");
+        for (int i = 0; i <= words.length; i++) {
+        	if (words[i].contains("//") || comment){
+            	break;
+        	} else if (words[i].contains("/*")){    
+              comment = true;
+            } else if (comment == true) {
+              	if (words[i].contains("*/")) {
+                  comment = false; 
+                }
+            } else if (keywordSet.contains(words[i]) && comment == false) {
+          		count++;
+        	}
+        }
       }
 
       return count;
     }
-  }
+}
