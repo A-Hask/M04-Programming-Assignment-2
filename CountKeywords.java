@@ -40,9 +40,9 @@ public static void main(String[] args) throws Exception {
         String line = input.nextLine();
         String[] words = line.split(" ");
         for (int i = 0; i <= words.length; i++) {
-        	if (words[i].contains("//") || comment){
+        	if (words[i].contains("//") || comment) {
             	break;
-        	} else if (words[i].contains("/*")){    
+        	} else if (words[i].contains("/*")) {    
               comment = true;
           } else if (comment == true) {
               if (words[i].contains("*/")) {
