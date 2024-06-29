@@ -44,12 +44,12 @@ public static void main(String[] args) throws Exception {
             	break;
         	} else if (words[i].contains("/*")){    
               comment = true;
-            } else if (comment == true) {
-              	if (words[i].contains("*/")) {
-                  comment = false; 
-                }
-            } else if (keywordSet.contains(words[i]) && comment == false) {
-          		count++;
+          } else if (comment == true) {
+              if (words[i].contains("*/")) {
+                comment = false; 
+              }
+          } else if (keywordSet.contains(words[i]) && comment == false) {
+          	count++;
         	}
         }
       }
