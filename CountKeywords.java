@@ -39,7 +39,7 @@ public static void main(String[] args) throws Exception {
       while (input.hasNext()) {
         String line = input.nextLine();
         String[] words = line.split(" ");
-        for (int i = 0; i <= words.length; i++) {
+        for (int i = 0; i != words.length; i++) {
         	if (words[i].contains("//") || comment) {
             	break;
         	} else if (words[i].contains("/*")) {    
